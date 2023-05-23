@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express()
+const app = express();
 const axios = require('axios');
 const fs = require("fs");
 const { createCanvas } = require('canvas');
@@ -23,7 +23,7 @@ function processContributions(events) {
         contributions[date]++;
     }
     return contributions;
-}
+};
 
 function createImage(contributions, width, height) {
     const canvas = createCanvas(width, height);
@@ -60,7 +60,7 @@ function createImage(contributions, width, height) {
     const stream = canvas.createPNGStream();
     stream.pipe(out);
     out.on('finish', () => console.log('The PNG file was created.'));
-}
+};
 
 
 let wallpaper;
@@ -72,10 +72,11 @@ import('wallpaper').then((module) => {
 app.get("/", async (req, res) => {
     const fetch = await fetchUserActivity("Daar93");
     createImage(processContributions(fetch), 1920, 1080);
+    console.log((fetch));
 
     res.send("Hallo");
-})
+});
 
 app.listen(3000, () => {
-
-})
+    console.log("http://localhost:3000");
+});
